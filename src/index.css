@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    background-color: #090909;
+    color: #f3f0ea;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    line-height: 1.05;
+    font-weight: 300;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  ::selection {
+    background: #f3f0ea;
+    color: #090909;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+}
+
+.scroller {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.page-screen,
+.page-flow {
+  box-sizing: border-box;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+.page-screen {
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.page-flow {
+  min-height: 100%;
+  scroll-snap-align: none;
+}
+
+.guide-vertical {
+  writing-mode: vertical-rl;
+}
+
+button {
+  touch-action: manipulation;
+}
+
+.reveal-wait {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.reveal-in {
+  animation: fade-up 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.uncover {
+  animation: uncover 1.25s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes uncover {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.35s ease-out both;
+}
+
+input[type='date'] {
+  min-height: 3rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-wait {
+    opacity: 1;
+    transform: none;
+  }
+}
